@@ -1,0 +1,2717 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GB WMS</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+
+                <div class="brand-mark">
+                    GB
+                </div>
+
+                <div>
+                    <h1>GB WMS</h1>
+                    <span>WAREHOUSE MANAGEMENT</span>
+                </div>
+
+            </div>
+
+
+            <nav class="sidebar-menu">
+
+                <span class="menu-label">
+                    OPERAÇÃO
+                </span>
+
+
+                <a href="#" class="menu-item active" data-page="dashboard">
+                    Dashboard
+                </a>
+
+
+                <a href="#" class="menu-item" data-page="produtos">
+                    Produtos
+                </a>
+
+
+                <a href="#" class="menu-item" data-page="estoque">
+                    Estoque
+                </a>
+
+
+                <a href="#" class="menu-item" data-page="movimentacoes">
+                    Movimentações
+                </a>
+
+
+                <a href="#" class="menu-item" data-page="transferencias">
+                    Transferências
+                </a>
+
+
+                <a href="#" class="menu-item" data-page="inventario">
+                    Inventário
+                </a>
+
+
+                <a href="#" class="menu-item" data-page="fornecedores">
+                    Fornecedores
+                </a>
+
+
+                <span class="menu-label">
+                    GESTÃO
+                </span>
+
+
+                <a href="#" class="menu-item" data-page="relatorios">
+                    Relatórios
+                </a>
+
+            </nav>
+
+
+            <div class="warehouse-card">
+
+                <span>
+                    CENTRO DE DISTRIBUIÇÃO
+                </span>
+
+                <strong>
+                    CD Rio de Janeiro
+                </strong>
+
+                <small>
+                    Operação ativa
+                </small>
+
+            </div>
+
+
+            <div class="sidebar-footer">
+
+                <span>
+                    GB WMS
+                </span>
+
+                <span>
+                    v1.0
+                </span>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================================
+             CONTEÚDO PRINCIPAL
+        ====================================================== -->
+
+        <main class="main-content">
+
+            <!-- =================================================
+                 TOPBAR
+            ================================================== -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <h2 id="pageTitle">
+                        Visão geral
+                    </h2>
+
+                    <p id="pageDescription">
+                        Acompanhe os principais indicadores da operação.
+                    </p>
+
+                </div>
+
+
+                <div class="topbar-actions">
+
+                    <input type="text" id="globalSearch" placeholder="Buscar no sistema... Ctrl + K">
+
+
+                    <div class="profile">
+
+                        <div class="profile-avatar">
+                            G
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Gabriel
+                            </strong>
+
+                            <span>
+                                Administrador
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 DASHBOARD
+            ================================================== -->
+
+            <section id="dashboardPage" class="page-section active">
+
+                <section class="metrics-grid">
+
+                    <article class="metric-card">
+
+                        <span>
+                            SKUs ativos
+                        </span>
+
+                        <strong id="totalProducts">
+                            0
+                        </strong>
+
+                        <small>
+                            Produtos cadastrados
+                        </small>
+
+                    </article>
+
+
+                    <article class="metric-card">
+
+                        <span>
+                            Estoque total
+                        </span>
+
+                        <strong id="totalStock">
+                            0
+                        </strong>
+
+                        <small>
+                            Unidades armazenadas
+                        </small>
+
+                    </article>
+
+
+                    <article class="metric-card">
+
+                        <span>
+                            Estoque crítico
+                        </span>
+
+                        <strong id="criticalStock">
+                            0
+                        </strong>
+
+                        <small>
+                            SKUs abaixo do mínimo
+                        </small>
+
+                    </article>
+
+
+                    <article class="metric-card">
+
+                        <span>
+                            Movimentações hoje
+                        </span>
+
+                        <strong id="todayMovements">
+                            0
+                        </strong>
+
+                        <small>
+                            Entradas e saídas
+                        </small>
+
+                    </article>
+
+                </section>
+
+
+                <section class="dashboard-grid">
+
+                    <article class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="eyebrow">
+                                    FLUXO OPERACIONAL
+                                </span>
+
+                                <h3>
+                                    Movimentação de estoque
+                                </h3>
+
+                            </div>
+
+
+                            <select id="chartPeriod">
+
+                                <option value="7">
+                                    7 dias
+                                </option>
+
+                                <option value="15">
+                                    15 dias
+                                </option>
+
+                                <option value="30">
+                                    30 dias
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="chart-container">
+
+                            <canvas id="movementChart"></canvas>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="panel warehouse-occupancy">
+
+                        <span class="eyebrow">
+                            OPERAÇÃO
+                        </span>
+
+                        <h3>
+                            Centro de distribuição
+                        </h3>
+
+                        <strong>
+                            CD Rio de Janeiro
+                        </strong>
+
+                        <p>
+                            Monitoramento operacional ativo.
+                        </p>
+
+                    </article>
+
+                </section>
+
+
+                <section class="dashboard-grid">
+
+                    <article class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="eyebrow">
+                                    ATENÇÃO
+                                </span>
+
+                                <h3>
+                                    Estoque crítico
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="table-container">
+
+                            <table>
+
+                                <thead>
+
+                                    <tr>
+                                        <th>SKU</th>
+                                        <th>PRODUTO</th>
+                                        <th>ESTOQUE</th>
+                                        <th>MÍNIMO</th>
+                                    </tr>
+
+                                </thead>
+
+                                <tbody id="criticalStockTableBody">
+
+                                    <tr>
+                                        <td colspan="4">
+                                            Nenhum produto crítico.
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="eyebrow">
+                                    RASTREABILIDADE
+                                </span>
+
+                                <h3>
+                                    Movimentações recentes
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="table-container">
+
+                            <table>
+
+                                <thead>
+
+                                    <tr>
+                                        <th>TIPO</th>
+                                        <th>SKU</th>
+                                        <th>QTD.</th>
+                                        <th>DATA</th>
+                                    </tr>
+
+                                </thead>
+
+                                <tbody id="recentMovementsTableBody">
+
+                                    <tr>
+                                        <td colspan="4">
+                                            Nenhuma movimentação registrada.
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+            </section>
+
+
+            <!-- =================================================
+                 PRODUTOS
+            ================================================== -->
+
+            <section id="productsPage" class="page-section">
+
+                <section class="operation-toolbar">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            CADASTRO
+                        </span>
+
+                        <h3>
+                            Produtos
+                        </h3>
+
+                        <p>
+                            Gerencie os SKUs utilizados na operação.
+                        </p>
+
+                    </div>
+
+
+                    <button class="primary-button" id="newProductButton">
+                        + Novo produto
+                    </button>
+
+                </section>
+
+
+                <section class="product-summary">
+
+                    <div>
+
+                        <span>
+                            Produtos
+                        </span>
+
+                        <strong id="productTotalCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Ativos
+                        </span>
+
+                        <strong id="productActiveCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Inativos
+                        </span>
+
+                        <strong id="productInactiveCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </section>
+
+
+                <section class="panel products-panel">
+
+                    <div class="products-toolbar">
+
+                        <div class="products-search">
+
+                            <input type="text" id="productSearch" placeholder="Buscar SKU ou produto...">
+
+                        </div>
+
+
+                        <select id="productStatusFilter">
+
+                            <option value="">
+                                Todos os status
+                            </option>
+
+                            <option value="Ativo">
+                                Ativos
+                            </option>
+
+                            <option value="Inativo">
+                                Inativos
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>SKU</th>
+                                    <th>PRODUTO</th>
+                                    <th>CATEGORIA</th>
+                                    <th>ENDEREÇO</th>
+                                    <th>UNIDADE</th>
+                                    <th>MÍNIMO</th>
+                                    <th>ESTOQUE</th>
+                                    <th>STATUS</th>
+                                    <th>AÇÕES</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="productsTableBody">
+
+                                <tr>
+
+                                    <td colspan="9">
+                                        Nenhum produto cadastrado.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+            <!-- =================================================
+                 ESTOQUE
+            ================================================== -->
+
+            <section id="stockPage" class="page-section">
+
+                <section class="operation-toolbar">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            OPERAÇÃO
+                        </span>
+
+                        <h3>
+                            Controle de estoque
+                        </h3>
+
+                        <p>
+                            Execute recebimentos, expedições e correções de saldo.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <section class="stock-operation-grid">
+
+                    <article class="stock-operation-card">
+
+                        <span class="eyebrow">
+                            RECEBIMENTO
+                        </span>
+
+                        <h3>
+                            Entrada de estoque
+                        </h3>
+
+                        <p>
+                            Registre o recebimento de mercadorias de fornecedores.
+                        </p>
+
+                        <button class="primary-button" id="newEntryButton">
+                            Nova entrada
+                        </button>
+
+                    </article>
+
+
+                    <article class="stock-operation-card">
+
+                        <span class="eyebrow">
+                            EXPEDIÇÃO
+                        </span>
+
+                        <h3>
+                            Saída de estoque
+                        </h3>
+
+                        <p>
+                            Registre a retirada de mercadorias do estoque.
+                        </p>
+
+                        <button class="primary-button" id="newExitButton">
+                            Nova saída
+                        </button>
+
+                    </article>
+
+
+                    <article class="stock-operation-card">
+
+                        <span class="eyebrow">
+                            CORREÇÃO
+                        </span>
+
+                        <h3>
+                            Ajuste de estoque
+                        </h3>
+
+                        <p>
+                            Corrija divergências identificadas durante a operação.
+                        </p>
+
+                        <button class="primary-button" id="newAdjustmentButton">
+                            Novo ajuste
+                        </button>
+
+                    </article>
+
+                </section>
+
+
+                <section class="panel products-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                POSIÇÃO ATUAL
+                            </span>
+
+                            <h3>
+                                Estoque por produto
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>SKU</th>
+                                    <th>PRODUTO</th>
+                                    <th>ENDEREÇO</th>
+                                    <th>ESTOQUE</th>
+                                    <th>MÍNIMO</th>
+                                    <th>SITUAÇÃO</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="stockTableBody">
+
+                                <tr>
+                                    <td colspan="6">
+                                        Nenhum produto cadastrado.
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+            <!-- =================================================
+                 MOVIMENTAÇÕES
+            ================================================== -->
+
+            <section id="movementsPage" class="page-section">
+
+                <section class="operation-toolbar">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            RASTREABILIDADE
+                        </span>
+
+                        <h3>
+                            Movimentações
+                        </h3>
+
+                        <p>
+                            Consulte o histórico completo das operações de estoque.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <section class="panel products-panel">
+
+                    <div class="products-toolbar">
+
+                        <div class="products-search">
+
+                            <input type="text" id="movementSearch" placeholder="Buscar SKU, produto, documento...">
+
+                        </div>
+
+
+                        <select id="movementTypeFilter">
+
+                            <option value="">
+                                Todos os tipos
+                            </option>
+
+                            <option value="Entrada">
+                                Entradas
+                            </option>
+
+                            <option value="Saída">
+                                Saídas
+                            </option>
+
+                            <option value="Ajuste">
+                                Ajustes
+                            </option>
+
+                            <option value="Ajuste de Inventário">
+                                Ajustes de inventário
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>DATA</th>
+                                    <th>TIPO</th>
+                                    <th>SKU</th>
+                                    <th>PRODUTO</th>
+                                    <th>QUANTIDADE</th>
+                                    <th>SALDO</th>
+                                    <th>DOCUMENTO</th>
+                                    <th>FORNECEDOR</th>
+                                    <th>RESPONSÁVEL</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="movementsTableBody">
+
+                                <tr>
+                                    <td colspan="9">
+                                        Nenhuma movimentação encontrada.
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+            <!-- =================================================
+                 TRANSFERÊNCIAS
+            ================================================== -->
+
+            <section id="transfersPage" class="page-section">
+
+                <section class="operation-toolbar">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            MOVIMENTAÇÃO INTERNA
+                        </span>
+
+                        <h3>
+                            Transferências de estoque
+                        </h3>
+
+                        <p>
+                            Transfira mercadorias entre endereços sem alterar o estoque total do SKU.
+                        </p>
+
+                    </div>
+
+
+                    <button class="primary-button" id="newTransferButton" type="button" disabled>
+                        + Nova transferência
+                    </button>
+
+                </section>
+
+
+                <section class="product-summary">
+
+                    <div>
+
+                        <span>
+                            Transferências
+                        </span>
+
+                        <strong>
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Unidades transferidas
+                        </span>
+
+                        <strong>
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Endereços envolvidos
+                        </span>
+
+                        <strong>
+                            0
+                        </strong>
+
+                    </div>
+
+                </section>
+
+
+                <section class="panel products-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                RASTREABILIDADE INTERNA
+                            </span>
+
+                            <h3>
+                                Histórico de transferências
+                            </h3>
+
+                            <p>
+                                O registro funcional será ativado na próxima etapa,
+                                quando o estoque passar a controlar saldo por endereço.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>DATA</th>
+                                    <th>SKU</th>
+                                    <th>PRODUTO</th>
+                                    <th>ORIGEM</th>
+                                    <th>DESTINO</th>
+                                    <th>QUANTIDADE</th>
+                                    <th>RESPONSÁVEL</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td colspan="7">
+                                        Nenhuma transferência registrada.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </section>
+            <!-- =================================================
+                 INVENTÁRIO
+            ================================================== -->
+
+            <section id="inventoryPage" class="page-section">
+
+                <section class="operation-toolbar">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            CONTROLE FÍSICO
+                        </span>
+
+                        <h3>
+                            Inventário de estoque
+                        </h3>
+
+                        <p>
+                            Registre contagens físicas, divergências e aprovações.
+                        </p>
+
+                    </div>
+
+
+                    <button class="primary-button" id="newInventoryButton">
+                        + Novo inventário
+                    </button>
+
+                </section>
+
+
+                <section class="product-summary">
+
+                    <div>
+
+                        <span>
+                            Inventários
+                        </span>
+
+                        <strong id="inventoryTotalCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Em conferência
+                        </span>
+
+                        <strong id="inventoryOpenCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Concluídos
+                        </span>
+
+                        <strong id="inventoryCompletedCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Com divergência
+                        </span>
+
+                        <strong id="inventoryDivergenceCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </section>
+
+
+                <section class="panel products-panel">
+
+                    <div class="products-toolbar">
+
+                        <div class="products-search">
+
+                            <input type="text" id="inventorySearch" placeholder="Buscar inventário, SKU ou produto...">
+
+                        </div>
+
+
+                        <select id="inventoryStatusFilter">
+
+                            <option value="">
+                                Todos os status
+                            </option>
+
+                            <option value="Em conferência">
+                                Em conferência
+                            </option>
+
+                            <option value="Concluído">
+                                Concluídos
+                            </option>
+
+                            <option value="Cancelado">
+                                Cancelados
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>INVENTÁRIO</th>
+                                    <th>DATA</th>
+                                    <th>SKU</th>
+                                    <th>PRODUTO</th>
+                                    <th>ENDEREÇO</th>
+                                    <th>SISTEMA</th>
+                                    <th>FÍSICO</th>
+                                    <th>DIVERGÊNCIA</th>
+                                    <th>STATUS</th>
+                                    <th>RESPONSÁVEL</th>
+                                    <th>AÇÕES</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="inventoryTableBody">
+
+                                <tr>
+
+                                    <td colspan="11">
+                                        Nenhum inventário registrado.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+            <!-- =================================================
+                 FORNECEDORES
+            ================================================== -->
+
+            <section id="suppliersPage" class="page-section">
+
+                <section class="operation-toolbar">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            PARCEIROS
+                        </span>
+
+                        <h3>
+                            Fornecedores
+                        </h3>
+
+                        <p>
+                            Gerencie os fornecedores utilizados nos recebimentos.
+                        </p>
+
+                    </div>
+
+
+                    <button class="primary-button" id="newSupplierButton">
+                        + Novo fornecedor
+                    </button>
+
+                </section>
+
+
+                <section class="product-summary">
+
+                    <div>
+
+                        <span>
+                            Fornecedores
+                        </span>
+
+                        <strong id="supplierTotalCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Ativos
+                        </span>
+
+                        <strong id="supplierActiveCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Inativos
+                        </span>
+
+                        <strong id="supplierInactiveCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </section>
+
+
+                <section class="panel products-panel">
+
+                    <div class="products-toolbar">
+
+                        <div class="products-search">
+
+                            <input type="text" id="supplierSearch" placeholder="Buscar fornecedor ou CNPJ...">
+
+                        </div>
+
+
+                        <select id="supplierStatusFilter">
+
+                            <option value="">
+                                Todos os status
+                            </option>
+
+                            <option value="Ativo">
+                                Ativos
+                            </option>
+
+                            <option value="Inativo">
+                                Inativos
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>CNPJ</th>
+                                    <th>NOME FANTASIA</th>
+                                    <th>RAZÃO SOCIAL</th>
+                                    <th>CONTATO</th>
+                                    <th>TELEFONE</th>
+                                    <th>E-MAIL</th>
+                                    <th>STATUS</th>
+                                    <th>AÇÕES</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="suppliersTableBody">
+
+                                <tr>
+
+                                    <td colspan="8">
+                                        Nenhum fornecedor cadastrado.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+            <!-- =================================================
+                 RELATÓRIOS
+            ================================================== -->
+
+            <section id="reportsPage" class="page-section">
+
+                <section class="operation-toolbar">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            ANÁLISE OPERACIONAL
+                        </span>
+
+                        <h3>
+                            Relatórios
+                        </h3>
+
+                        <p>
+                            Consulte indicadores de estoque, movimentações,
+                            inventários e produtos críticos.
+                        </p>
+
+                    </div>
+
+
+                    <button class="primary-button" id="exportReportButton">
+                        Exportar CSV
+                    </button>
+
+                </section>
+
+
+                <section class="product-summary">
+
+                    <div>
+
+                        <span>
+                            Estoque total
+                        </span>
+
+                        <strong id="reportTotalStock">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Entradas no período
+                        </span>
+
+                        <strong id="reportTotalEntries">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Saídas no período
+                        </span>
+
+                        <strong id="reportTotalExits">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            SKUs críticos
+                        </span>
+
+                        <strong id="reportCriticalProducts">
+                            0
+                        </strong>
+
+                    </div>
+
+                </section>
+
+
+                <section class="panel products-panel">
+
+                    <div class="products-toolbar">
+
+                        <select id="reportTypeFilter">
+
+                            <option value="stock">
+                                Posição de estoque
+                            </option>
+
+                            <option value="critical">
+                                Produtos críticos
+                            </option>
+
+                            <option value="Entrada">
+                                Entradas
+                            </option>
+
+                            <option value="Saída">
+                                Saídas
+                            </option>
+
+                            <option value="Ajuste">
+                                Ajustes
+                            </option>
+
+                            <option value="Ajuste de Inventário">
+                                Ajustes de inventário
+                            </option>
+
+                            <option value="inventory">
+                                Inventários
+                            </option>
+
+                        </select>
+
+
+                        <select id="reportPeriodFilter">
+
+                            <option value="7">
+                                Últimos 7 dias
+                            </option>
+
+                            <option value="15">
+                                Últimos 15 dias
+                            </option>
+
+                            <option value="30" selected>
+                                Últimos 30 dias
+                            </option>
+
+                            <option value="90">
+                                Últimos 90 dias
+                            </option>
+
+                            <option value="all">
+                                Todo o período
+                            </option>
+
+                        </select>
+
+
+                        <div class="products-search">
+
+                            <input type="text" id="reportSearch" placeholder="Buscar SKU, produto, documento...">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead id="reportTableHead"></thead>
+
+                            <tbody id="reportTableBody"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         MODAL PRODUTO
+    ====================================================== -->
+
+    <div class="modal-overlay" id="productModal">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        CADASTRO DE SKU
+                    </span>
+
+                    <h3 id="productModalTitle">
+                        Novo produto
+                    </h3>
+
+                </div>
+
+
+                <button type="button" class="modal-close" id="closeProductModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="productForm">
+
+                <input type="hidden" id="productId">
+
+
+                <div class="form-grid">
+
+                    <label>
+                        SKU
+
+                        <input type="text" id="productSku" required>
+                    </label>
+
+
+                    <label>
+                        Produto
+
+                        <input type="text" id="productName" required>
+                    </label>
+
+
+                    <label>
+                        Categoria
+
+                        <input type="text" id="productCategory" required>
+                    </label>
+
+
+                    <label>
+                        Unidade
+
+                        <select id="productUnit" required>
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="UN">
+                                UN
+                            </option>
+
+                            <option value="CX">
+                                CX
+                            </option>
+
+                            <option value="KG">
+                                KG
+                            </option>
+
+                            <option value="LT">
+                                LT
+                            </option>
+
+                            <option value="PCT">
+                                PCT
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Endereço
+
+                        <input type="text" id="productLocation" placeholder="Ex.: A-01-03" required>
+                    </label>
+
+
+                    <label>
+                        Estoque mínimo
+
+                        <input type="number" id="productMinimum" min="0" required>
+                    </label>
+
+
+                    <label>
+                        Status
+
+                        <select id="productStatus" required>
+
+                            <option value="Ativo">
+                                Ativo
+                            </option>
+
+                            <option value="Inativo">
+                                Inativo
+                            </option>
+
+                        </select>
+
+                    </label>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button type="button" class="secondary-button" id="cancelProductButton">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="primary-button">
+                        Salvar produto
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MODAL FORNECEDOR
+    ====================================================== -->
+
+    <div class="modal-overlay" id="supplierModal">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        CADASTRO
+                    </span>
+
+                    <h3 id="supplierModalTitle">
+                        Novo fornecedor
+                    </h3>
+
+                </div>
+
+
+                <button type="button" class="modal-close" id="closeSupplierModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="supplierForm">
+
+                <input type="hidden" id="supplierId">
+
+
+                <div class="form-grid">
+
+                    <label>
+                        CNPJ
+
+                        <input type="text" id="supplierCnpj" required>
+                    </label>
+
+
+                    <label>
+                        Nome fantasia
+
+                        <input type="text" id="supplierTradeName" required>
+                    </label>
+
+
+                    <label>
+                        Razão social
+
+                        <input type="text" id="supplierCorporateName" required>
+                    </label>
+
+
+                    <label>
+                        Contato
+
+                        <input type="text" id="supplierContact">
+                    </label>
+
+
+                    <label>
+                        Telefone
+
+                        <input type="text" id="supplierPhone">
+                    </label>
+
+
+                    <label>
+                        E-mail
+
+                        <input type="email" id="supplierEmail">
+                    </label>
+
+
+                    <label>
+                        Status
+
+                        <select id="supplierStatus" required>
+
+                            <option value="Ativo">
+                                Ativo
+                            </option>
+
+                            <option value="Inativo">
+                                Inativo
+                            </option>
+
+                        </select>
+
+                    </label>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button type="button" class="secondary-button" id="cancelSupplierButton">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="primary-button">
+                        Salvar fornecedor
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ENTRADA
+    ====================================================== -->
+
+    <div class="modal-overlay" id="entryModal">
+
+        <div class="modal entry-modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        RECEBIMENTO
+                    </span>
+
+                    <h3>
+                        Entrada de estoque
+                    </h3>
+
+                </div>
+
+
+                <button class="modal-close" id="closeEntryModal" type="button">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="entryForm">
+
+                <section class="entry-section">
+
+                    <div class="entry-section-title">
+
+                        <span class="entry-step">
+                            01
+                        </span>
+
+                        <strong>
+                            Fornecedor
+                        </strong>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <label>
+                            Fornecedor
+
+                            <select id="entrySupplier" required></select>
+                        </label>
+
+
+                        <label>
+                            Nota fiscal / documento
+
+                            <input type="text" id="entryDocument" required>
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <section class="entry-section">
+
+                    <div class="entry-section-title">
+
+                        <span class="entry-step">
+                            02
+                        </span>
+
+                        <strong>
+                            Produto
+                        </strong>
+
+                    </div>
+
+
+                    <label>
+                        Produto / SKU
+
+                        <select id="entryProduct" required></select>
+                    </label>
+
+
+                    <div class="entry-product-preview">
+
+                        <div>
+
+                            <span>
+                                SKU
+                            </span>
+
+                            <strong id="entryPreviewSku">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Endereço
+                            </span>
+
+                            <strong id="entryPreviewLocation">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Saldo atual
+                            </span>
+
+                            <strong id="entryPreviewStock">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Estoque mínimo
+                            </span>
+
+                            <strong id="entryPreviewMinimum">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <section class="entry-section">
+
+                    <div class="entry-section-title">
+
+                        <span class="entry-step">
+                            03
+                        </span>
+
+                        <strong>
+                            Recebimento
+                        </strong>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <label>
+                            Quantidade
+
+                            <input type="number" id="entryQuantity" min="1" required>
+                        </label>
+
+
+                        <label>
+                            Observações
+
+                            <input type="text" id="entryNotes">
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <div class="entry-balance-box">
+
+                    <span>
+                        Saldo atual
+                        <strong id="entryCurrentStock">
+                            0
+                        </strong>
+                    </span>
+
+                    <span>
+                        +
+                    </span>
+
+                    <span>
+                        Entrada
+                        <strong id="entryQuantityPreview">
+                            0
+                        </strong>
+                    </span>
+
+                    <span>
+                        =
+                    </span>
+
+                    <span>
+                        Saldo projetado
+                        <strong id="entryProjectedStock">
+                            0
+                        </strong>
+                    </span>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button type="button" class="secondary-button" id="cancelEntryButton">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="primary-button">
+                        Confirmar recebimento
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+    <!-- =====================================================
+     SAÍDA
+===================================================== -->
+
+    <div class="modal-overlay" id="exitModal">
+
+        <div class="modal entry-modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="eyebrow">
+                        EXPEDIÇÃO
+                    </span>
+
+                    <h3>
+                        Saída de estoque
+                    </h3>
+                </div>
+
+                <button class="modal-close" id="closeExitModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="exitForm">
+
+                <section class="entry-section">
+
+                    <div class="entry-section-title">
+                        <span class="entry-step">01</span>
+                        <strong>Produto</strong>
+                    </div>
+
+                    <label>
+                        Produto / SKU
+
+                        <select id="exitProduct" required></select>
+                    </label>
+
+
+                    <div class="entry-product-preview">
+
+                        <div>
+                            <span>SKU</span>
+                            <strong id="exitPreviewSku">-</strong>
+                        </div>
+
+                        <div>
+                            <span>Endereço</span>
+                            <strong id="exitPreviewLocation">-</strong>
+                        </div>
+
+                        <div>
+                            <span>Saldo disponível</span>
+                            <strong id="exitPreviewStock">0</strong>
+                        </div>
+
+                        <div>
+                            <span>Estoque mínimo</span>
+                            <strong id="exitPreviewMinimum">0</strong>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <section class="entry-section">
+
+                    <div class="entry-section-title">
+                        <span class="entry-step">02</span>
+                        <strong>Expedição</strong>
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <label>
+                            Quantidade
+
+                            <input type="number" id="exitQuantity" min="1" required>
+                        </label>
+
+
+                        <label>
+                            Pedido / documento
+
+                            <input type="text" id="exitDocument" required>
+                        </label>
+
+
+                        <label>
+                            Observações
+
+                            <input type="text" id="exitNotes">
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <div class="entry-balance-box">
+
+                    <span>
+                        Saldo atual
+                        <strong id="exitCurrentStock">0</strong>
+                    </span>
+
+                    <span>−</span>
+
+                    <span>
+                        Saída
+                        <strong id="exitQuantityPreview">0</strong>
+                    </span>
+
+                    <span>=</span>
+
+                    <span>
+                        Saldo projetado
+                        <strong id="exitProjectedStock">0</strong>
+                    </span>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button type="button" class="secondary-button" id="cancelExitButton">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="primary-button">
+                        Confirmar expedição
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+     AJUSTE
+===================================================== -->
+
+    <div class="modal-overlay" id="adjustmentModal">
+
+        <div class="modal entry-modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="eyebrow">
+                        CORREÇÃO DE SALDO
+                    </span>
+
+                    <h3>
+                        Ajuste de estoque
+                    </h3>
+                </div>
+
+                <button class="modal-close" id="closeAdjustmentModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="adjustmentForm">
+
+                <label>
+                    Produto
+
+                    <select id="adjustmentProduct" required></select>
+                </label>
+
+
+                <div class="entry-product-preview">
+
+                    <div>
+                        <span>SKU</span>
+                        <strong id="adjustmentPreviewSku">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Endereço</span>
+                        <strong id="adjustmentPreviewLocation">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Saldo sistema</span>
+                        <strong id="adjustmentSystemStock">0</strong>
+                    </div>
+
+                    <div>
+                        <span>Unidade</span>
+                        <strong id="adjustmentPreviewUnit">-</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <label>
+                        Quantidade física
+
+                        <input type="number" id="adjustmentPhysicalStock" min="0" required>
+                    </label>
+
+
+                    <label>
+                        Motivo
+
+                        <select id="adjustmentReason" required>
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="Avaria">
+                                Avaria
+                            </option>
+
+                            <option value="Perda">
+                                Perda
+                            </option>
+
+                            <option value="Sobra física">
+                                Sobra física
+                            </option>
+
+                            <option value="Erro operacional">
+                                Erro operacional
+                            </option>
+
+                            <option value="Correção de cadastro">
+                                Correção de cadastro
+                            </option>
+
+                            <option value="Outros">
+                                Outros
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Observações
+
+                        <input type="text" id="adjustmentNotes">
+                    </label>
+
+                </div>
+
+
+                <div class="entry-balance-box">
+
+                    <span>
+                        Sistema
+                        <strong id="adjustmentCurrentStock">0</strong>
+                    </span>
+
+                    <span>→</span>
+
+                    <span>
+                        Físico
+                        <strong id="adjustmentPhysicalPreview">0</strong>
+                    </span>
+
+                    <span>=</span>
+
+                    <span>
+                        Divergência
+                        <strong id="adjustmentDifference">0</strong>
+                    </span>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button type="button" class="secondary-button" id="cancelAdjustmentButton">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="primary-button">
+                        Confirmar ajuste
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+     INVENTÁRIO
+===================================================== -->
+
+    <div class="modal-overlay" id="inventoryModal">
+
+        <div class="modal entry-modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        CONTAGEM DE ESTOQUE
+                    </span>
+
+                    <h3>
+                        Abrir novo inventário
+                    </h3>
+
+                </div>
+
+                <button class="modal-close" id="closeInventoryModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="inventoryForm">
+
+                <section class="entry-section">
+
+                    <div class="entry-section-title">
+                        <span class="entry-step">01</span>
+                        <strong>Identificação</strong>
+                    </div>
+
+
+                    <div class="entry-product-preview">
+
+                        <div>
+                            <span>Inventário</span>
+                            <strong id="inventoryPreviewCode">
+                                INV-000001
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>Responsável</span>
+                            <strong>Gabriel</strong>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <section class="entry-section">
+
+                    <div class="entry-section-title">
+                        <span class="entry-step">02</span>
+                        <strong>Produto</strong>
+                    </div>
+
+
+                    <label>
+                        Produto / SKU
+
+                        <select id="inventoryProduct" required></select>
+                    </label>
+
+
+                    <div class="entry-product-preview">
+
+                        <div>
+                            <span>SKU</span>
+                            <strong id="inventoryPreviewSku">-</strong>
+                        </div>
+
+                        <div>
+                            <span>Endereço</span>
+                            <strong id="inventoryPreviewLocation">-</strong>
+                        </div>
+
+                        <div>
+                            <span>Saldo sistema</span>
+                            <strong id="inventoryPreviewSystemStock">0</strong>
+                        </div>
+
+                        <div>
+                            <span>Unidade</span>
+                            <strong id="inventoryPreviewUnit">-</strong>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <section class="entry-section">
+
+                    <div class="entry-section-title">
+                        <span class="entry-step">03</span>
+                        <strong>Contagem física</strong>
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <label>
+                            Quantidade contada
+
+                            <input type="number" id="inventoryPhysicalStock" min="0" required>
+                        </label>
+
+
+                        <label>
+                            Observações
+
+                            <input type="text" id="inventoryNotes">
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <div class="entry-balance-box">
+
+                    <span>
+                        Sistema
+                        <strong id="inventorySystemStock">0</strong>
+                    </span>
+
+                    <span>→</span>
+
+                    <span>
+                        Físico
+                        <strong id="inventoryPhysicalPreview">0</strong>
+                    </span>
+
+                    <span>=</span>
+
+                    <span>
+                        Divergência
+                        <strong id="inventoryDifference">0</strong>
+                    </span>
+
+                </div>
+
+
+                <div class="entry-confirmation-notice">
+
+                    O estoque não será alterado durante a contagem.
+                    A divergência somente será aplicada após a aprovação
+                    do inventário.
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button type="button" class="secondary-button" id="cancelInventoryButton">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="primary-button">
+                        Registrar contagem
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+     MODAL DE SUCESSO ENTRADA
+===================================================== -->
+
+    <div class="modal-overlay" id="entrySuccessModal">
+
+        <div class="success-modal">
+
+            <div class="success-modal-header">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <div class="success-header-text">
+
+                    <span class="eyebrow">
+                        RECEBIMENTO CONCLUÍDO
+                    </span>
+
+                    <h3>
+                        Entrada registrada
+                    </h3>
+
+                    <p id="entrySuccessMessage">
+                        Mercadoria recebida com sucesso.
+                    </p>
+
+                </div>
+
+                <button class="modal-close" id="closeEntrySuccessModal">
+                    ×
+                </button>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button class="primary-button" id="finishEntrySuccess">
+                    Concluir
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+     MODAL DE SUCESSO SAÍDA
+===================================================== -->
+
+    <div class="modal-overlay" id="exitSuccessModal">
+
+        <div class="success-modal">
+
+            <div class="success-modal-header">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <div class="success-header-text">
+
+                    <span class="eyebrow">
+                        EXPEDIÇÃO CONCLUÍDA
+                    </span>
+
+                    <h3>
+                        Saída registrada
+                    </h3>
+
+                    <p id="exitSuccessMessage">
+                        Movimentação realizada com sucesso.
+                    </p>
+
+                </div>
+
+                <button class="modal-close" id="closeExitSuccessModal">
+                    ×
+                </button>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button class="primary-button" id="finishExitSuccess">
+                    Concluir
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+     MODAL SUCESSO AJUSTE
+===================================================== -->
+
+    <div class="modal-overlay" id="adjustmentSuccessModal">
+
+        <div class="success-modal">
+
+            <div class="success-modal-header">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <div class="success-header-text">
+
+                    <span class="eyebrow">
+                        AJUSTE CONCLUÍDO
+                    </span>
+
+                    <h3>
+                        Saldo atualizado
+                    </h3>
+
+                    <p id="adjustmentSuccessMessage">
+                        Ajuste registrado.
+                    </p>
+
+                </div>
+
+                <button class="modal-close" id="closeAdjustmentSuccessModal">
+                    ×
+                </button>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button class="primary-button" id="finishAdjustmentSuccess">
+                    Concluir
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+     SEM DIVERGÊNCIA
+===================================================== -->
+
+    <div class="modal-overlay" id="noDifferenceModal">
+
+        <div class="success-modal">
+
+            <div class="success-modal-header">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <div class="success-header-text">
+
+                    <span class="eyebrow">
+                        CONFERÊNCIA
+                    </span>
+
+                    <h3>
+                        Estoque conferido
+                    </h3>
+
+                    <p id="noDifferenceMessage">
+                        Não existe divergência de estoque.
+                    </p>
+
+                </div>
+
+                <button class="modal-close" id="closeNoDifferenceModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="success-balance-grid" id="noDifferenceDetails"></div>
+
+
+            <div class="modal-actions">
+
+                <button class="primary-button" id="finishNoDifference">
+                    Concluir conferência
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+     DIÁLOGO PADRÃO GB WMS
+===================================================== -->
+
+    <div class="modal-overlay" id="systemDialogModal">
+
+        <div class="success-modal">
+
+            <div class="success-modal-header">
+
+                <div class="success-icon" id="systemDialogIcon">
+                    !
+                </div>
+
+                <div class="success-header-text">
+
+                    <span class="eyebrow" id="systemDialogEyebrow">
+                        GB WMS
+                    </span>
+
+                    <h3 id="systemDialogTitle">
+                        Atenção
+                    </h3>
+
+                    <p id="systemDialogMessage">
+                        -
+                    </p>
+
+                </div>
+
+                <button class="modal-close" id="closeSystemDialog">
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button class="secondary-button" id="systemDialogCancel">
+                    Cancelar
+                </button>
+
+                <button class="primary-button" id="systemDialogConfirm">
+                    Entendi
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CHART.JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- SISTEMA -->
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
