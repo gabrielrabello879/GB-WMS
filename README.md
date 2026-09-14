@@ -7,6 +7,11 @@ O **GB WMS** centraliza o controle de produtos, estoque, fornecedores, movimenta
 > Projeto desenvolvido para aplicação prática de conceitos de desenvolvimento web e processos de logística/WMS.
 
 ---
+## 🌐 Demonstração online
+
+🚀 **[Acessar o GB WMS](https://gabrielrabello879.github.io/GB-WMS/)**
+
+O sistema pode ser testado diretamente pelo navegador, sem necessidade de instalação.
 
 ## 🚀 Funcionalidades
 
