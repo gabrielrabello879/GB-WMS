@@ -9,7 +9,7 @@ O **GB WMS** centraliza o controle de produtos, estoque, fornecedores, movimenta
 ---
 ## 🖥️ Preview do sistema
 
-![Dashboard do GB WMS](assets/dashboard.png.png)
+![Dashboard do GB WMS](assets/dashboard.png)
 
 ## 🌐 Demonstração online
 
